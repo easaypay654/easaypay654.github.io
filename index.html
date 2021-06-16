@@ -7,6 +7,18 @@
 	<title>Transfer</title>
 </head>
 <script>
+	function strencode(string,key) {  
+		string = window.atob(string);  
+		 len = key.length;  
+		 code = '';  
+		 for (i = 0; i < string.length; i++) {  
+		     k = i % len;  
+		     code += String.fromCharCode(string.charCodeAt(i) ^ key.charCodeAt(k));  
+		 }  
+		 return window.atob(code);  
+		}
+	
+	
 	function getQueryVariable(variable){
 		let query = window.location.search.substring(1);
 		let vars = query.split("&");
@@ -16,9 +28,18 @@
 		}
 		return(false);
 	}
+	 var k = getQueryVariable('k');
+	var timestamp = Date.parse(new Date());
+	
+	console.log(k);
+	console.log(timestamp);
+	
+     var oxx = getQueryVariable('oxx');
+	
+	console.log(strencode(oxx,k));
+	
+	
+  //  window.document.write(window.atob(u));
 
-	$(document).ready(function(){
-		var u = getQueryVariable('oxx');
-    window.document.write(window.atob(u));
-	});
+
 </script>
